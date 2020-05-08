@@ -5,26 +5,30 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.bl.cricketleague.FilePaths.IPL_MOST_RUN_SHEET;
+import static com.bl.cricketleague.FilePaths.WRONG_CSV_FILE_PATH;
 
-public class CricketLeagueTest
-{
+public class CricketLeagueTest {
     CricketLeague cricketLeague;
 
     @Before
-    public void setup()
-    {
-        cricketLeague=new CricketLeague();
+    public void setup() {
+        cricketLeague = new CricketLeague();
     }
 
     /* Tc 1.1 :Given The Ipl Most Run Csv File, Check To Ensure The Number Of Record Matches */
     @Test
     public void givenFilePath_WhenNoOfRecordMatches_ThenReturnTrue() {
-        try {
-            int noOfRecords = cricketLeague.readFile(IPL_MOST_RUN_SHEET);
-            Assert.assertEquals(100, noOfRecords);
-        } catch (CricketLeagueException e) {
-            e.printStackTrace();
-        }
+        int noOfRecords = cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        Assert.assertEquals(100, noOfRecords);
+    }
 
+    /* T.C 1.2 :Given IPL Censes Csv File Is Incorrect Then Returns Custom Exception */
+    @Test
+    public void givenStateCensusData_WhenWithWrongFile_ThenShouldThrowException()
+    {
+        try {
+            CricketLeague.readFile(WRONG_CSV_FILE_PATH);
+        } catch ( CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
     }
-    }
+}
