@@ -18,10 +18,13 @@ public class CricketLeagueTest
 
     /* Tc 1.1 :Given The Ipl Most Run Csv File, Check To Ensure The Number Of Record Matches */
     @Test
-    public void givenFilePath_WhenNoOfRecordMatches_ThenReturnTrue()
-    {
-            int noOfRecords=cricketLeague.readFile(IPL_MOST_RUN_SHEET);
-            Assert.assertEquals(100,noOfRecords);
-    }
+    public void givenFilePath_WhenNoOfRecordMatches_ThenReturnTrue() {
+        try {
+            int noOfRecords = cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+            Assert.assertEquals(100, noOfRecords);
+        } catch (CricketLeagueException e) {
+            e.printStackTrace();
+        }
 
-}
+    }
+    }
