@@ -50,4 +50,15 @@ public class CricketLeagueTest {
         catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
     }
+
+    /* T.C 1.5 :Given IPL Censes Csv file Is Correct But With Wrong Header Should Rhrow Custom Exception */
+    @Test
+    public void givenStateCensusData_WhenWithWrongHeader_ThenShouldThrowException()
+    {
+        try {
+            CricketLeague.readFile(WRONG_DELIMITER_FILE); }
+        catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
+    }
+
 }
