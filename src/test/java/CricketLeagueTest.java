@@ -40,4 +40,14 @@ public class CricketLeagueTest {
         catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
     }
+
+    /* T.C 1.4 :Given IPL Censes Csv file Is Correct But With Wrong Delimiter Should Rhrow Custom Exception */
+    @Test
+    public void givenStateCensusData_WhenWithWrongDelimiter_ThenShouldThrowException()
+    {
+        try {
+            CricketLeague.readFile(WRONG_DELIMITER_FILE); }
+        catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
+    }
 }
