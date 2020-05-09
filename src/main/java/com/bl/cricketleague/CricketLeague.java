@@ -20,7 +20,6 @@ public class CricketLeague {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             censusCSVList = csvBuilder.getCSVFileList(reader, IplMostRuns.class);
-            System.out.println(censusCSVList);
             return censusCSVList.size(); }
         catch (IOException e) {
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, "Enter Correct File And Type");

@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import static com.bl.cricketleague.FilePaths.*;
 
 public class CricketLeagueTest {
@@ -135,8 +134,17 @@ public class CricketLeagueTest {
         Assert.assertEquals("MS Dhoni",name);
     }
 
-
-
+    /* TC 6 : Given Cricket League Data when sorted should return sorted data By Runs With Best Avg*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunsWithBestAvg()
+    {
+        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseRunsWithBestAvrage();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
+        double runs=censusCsv[0].Runs;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("David Warner",name);
+    }
 }
 
 
