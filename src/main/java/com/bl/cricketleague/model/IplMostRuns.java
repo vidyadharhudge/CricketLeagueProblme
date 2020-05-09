@@ -4,47 +4,48 @@ import com.opencsv.bean.CsvBindByName;
 
 public class IplMostRuns
 {
+
     @CsvBindByName(column = "POS")
-    private String POS;
+    public String POS;
 
     @CsvBindByName(column = "PLAYER")
-    private String PLAYER;
+    public String PLAYER;
 
     @CsvBindByName(column = "Mat")
-    private String Mat;
+    public String Mat;
 
     @CsvBindByName(column = "Inns")
-    private String Inns;
+    public String Inns;
 
     @CsvBindByName(column = "NO")
-    private String NO;
+    public String NO;
 
     @CsvBindByName(column = "Runs")
-    private String Runs;
+    public double Runs;
 
     @CsvBindByName(column = "HS")
-    private String HS;
+    public String HS;
 
     @CsvBindByName(column = "Avg")
-    private String Avg;
+    public double Avg;
 
     @CsvBindByName(column = "BF")
-    private String BF;
+    public String BF;
 
     @CsvBindByName(column = "SR")
-    private String SR;
+    public double SR;
 
     @CsvBindByName(column = "100")
-    private String hundred;
+    public String hundred;
 
     @CsvBindByName(column = "50")
-    private String fifty;
+    public String fifty;
 
     @CsvBindByName(column = "4s")
-    private String fours;
+    public String fours;
 
     @CsvBindByName(column = "6s")
-    private String sixs;
+    public String sixs;
 
     public String getPOS() {
         return POS;
@@ -86,11 +87,11 @@ public class IplMostRuns
         this.NO = NO;
     }
 
-    public String getRuns() {
+    public double getRuns() {
         return Runs;
     }
 
-    public void setRuns(String runs) {
+    public void setRuns(double runs) {
         Runs = runs;
     }
 
@@ -102,11 +103,11 @@ public class IplMostRuns
         this.HS = HS;
     }
 
-    public String getAvg() {
+    public double getAvg() {
         return Avg;
     }
 
-    public void setAvg(String avg) {
+    public void setAvg(double avg) {
         Avg = avg;
     }
 
@@ -118,11 +119,11 @@ public class IplMostRuns
         this.BF = BF;
     }
 
-    public String getSR() {
+    public double getSR() {
         return SR;
     }
 
-    public void setSR(String SR) {
+    public void setSR(double SR) {
         this.SR = SR;
     }
 
@@ -156,5 +157,25 @@ public class IplMostRuns
 
     public void setSixs(String sixs) {
         this.sixs = sixs;
+    }
+
+    @Override
+    public String toString() {
+        return "IplMostRuns{" +
+                "POS='" + POS + '\'' +
+                ", PLAYER='" + PLAYER + '\'' +
+                ", Mat='" + Mat + '\'' +
+                ", Inns='" + Inns + '\'' +
+                ", NO='" + NO + '\'' +
+                ", Runs='" + Runs + '\'' +
+                ", HS='" + HS + '\'' +
+                ", Avg='" + Avg + '\'' +
+                ", BF='" + BF + '\'' +
+                ", SR='" + SR + '\'' +
+                ", hundred='" + hundred + '\'' +
+                ", fifty='" + fifty + '\'' +
+                ", fours='" + fours + '\'' +
+                ", sixs='" + sixs + '\'' +
+                '}';
     }
 }
