@@ -63,7 +63,7 @@ public class CricketLeagueTest {
             Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
     }
 
-    /* TC 1.6 : Given India Census Data when sorted should return start State of sorted data*/
+    /* TC 1.6 : Given Cricket Census Data when sorted should return sorted data BY Avrage Wise*/
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedDataAvrage()
     {
@@ -75,7 +75,7 @@ public class CricketLeagueTest {
             Assert.assertEquals("MS Dhoni",name);
     }
 
-    /* TC 3.1 : Given India Census Data when sorted should return start State of sorted data*/
+    /* TC 2 : Given Cricket League Data when sorted should return sorted data By Strike Rate*/
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate()
     {
