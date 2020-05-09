@@ -17,8 +17,8 @@ public class CricketCensusDAO
     public double SR;
     public String hundred;
     public String fifty;
-    public  String fours;
-    public String sixs;
+    public  int fours;
+    public int sixs;
     public CricketCensusDAO(IplMostRuns iplMostRuns)
     {
         POS=iplMostRuns.POS;

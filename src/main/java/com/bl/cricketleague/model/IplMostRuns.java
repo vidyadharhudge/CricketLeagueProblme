@@ -42,10 +42,10 @@ public class IplMostRuns
     public String fifty;
 
     @CsvBindByName(column = "4s")
-    public String fours;
+    public int fours;
 
     @CsvBindByName(column = "6s")
-    public String sixs;
+    public int sixs;
 
     public String getPOS() {
         return POS;
@@ -143,19 +143,19 @@ public class IplMostRuns
         this.fifty = fifty;
     }
 
-    public String getFours() {
+    public int getFours() {
         return fours;
     }
 
-    public void setFours(String fours) {
+    public void setFours(int fours) {
         this.fours = fours;
     }
 
-    public String getSixs() {
+    public int getSixs() {
         return sixs;
     }
 
-    public void setSixs(String sixs) {
+    public void setSixs(int sixs) {
         this.sixs = sixs;
     }
 
