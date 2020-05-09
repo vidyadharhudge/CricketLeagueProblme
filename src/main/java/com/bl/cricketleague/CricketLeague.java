@@ -36,6 +36,15 @@ public class CricketLeague {
         return numberOfEnteries;
     }
 
+    public String getSortedStrikeRate6s4s()  {
+        if(censusCSVList.size()==0 || censusCSVList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.SR);
+        this.sort(iplMostRunsComparator);
+        String sortedCensusJson = new Gson().toJson(censusCSVList);
+        return sortedCensusJson;
+    }
+
     public String getSortedWiseFours()  {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
