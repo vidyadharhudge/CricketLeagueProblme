@@ -87,7 +87,7 @@ public class CricketLeagueTest {
         Assert.assertEquals("Ishant Sharma",name);
     }
 
-    /* TC 3 : Given Cricket League Data when sorted should return sorted data By Sixes*/
+    /* TC 3.1 : Given Cricket League Data when sorted should return sorted data By Sixes*/
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedSixes()
     {
@@ -98,6 +98,19 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Andre Russell",name);
     }
+
+    /* TC 3.2 : Given Cricket League Data when sorted should return sorted data By fours*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedFours()
+    {
+        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseFours();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
+        double runs=censusCsv[0].fours;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Shikhar Dhawan",name);
+    }
+
 }
 
 
