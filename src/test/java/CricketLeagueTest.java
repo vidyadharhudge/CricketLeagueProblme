@@ -74,6 +74,18 @@ public class CricketLeagueTest {
             String name=censusCsv[0].getPLAYER();
             Assert.assertEquals("MS Dhoni",name);
     }
+
+    /* TC 3.1 : Given India Census Data when sorted should return start State of sorted data*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate()
+    {
+        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseStrikeRate();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
+        double runs=censusCsv[0].SR;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Ishant Sharma",name);
+    }
 }
 
 
