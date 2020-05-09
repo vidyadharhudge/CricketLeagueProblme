@@ -123,6 +123,18 @@ public class CricketLeagueTest {
         Assert.assertEquals("Ishant Sharma",name);
     }
 
+    /* TC 5 : Given Cricket League Data when sorted should return sorted data By Avg With Best SR*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedAvrageWithBestSR()
+    {
+        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseAvrageWithBestSR();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
+        double runs=censusCsv[0].Avg;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("MS Dhoni",name);
+    }
+
 
 
 }
