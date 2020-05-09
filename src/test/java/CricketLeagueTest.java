@@ -86,6 +86,18 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Ishant Sharma",name);
     }
+
+    /* TC 3 : Given Cricket League Data when sorted should return sorted data By Sixes*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedSixes()
+    {
+        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseSixes();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
+        double runs=censusCsv[0].sixs;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Andre Russell",name);
+    }
 }
 
 
