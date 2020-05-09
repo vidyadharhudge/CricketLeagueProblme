@@ -63,7 +63,7 @@ public class CricketLeagueTest {
             Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
     }
 
-    /* TC 3.1 : Given India Census Data when sorted should return start State of sorted data*/
+    /* TC 1.6 : Given India Census Data when sorted should return start State of sorted data*/
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedDataAvrage()
     {
