@@ -208,5 +208,14 @@ public class CricketLeagueTest {
         IplMostRuns[] censusCsvs = new Gson().fromJson(sortedData, IplMostRuns[].class);
         String names = censusCsvs[0].getPLAYER();
         Assert.assertEquals("MS Dhoni", names); }
+
+    /* TC 14 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Runs */
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedTopRuns() {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestRuns();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Deepak Chahar", name); }
 }
 
