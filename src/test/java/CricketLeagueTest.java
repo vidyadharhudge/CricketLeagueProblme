@@ -145,6 +145,13 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("David Warner",name);
     }
+    
+    /* Tc 7.1 :Given The Ipl Most Wickets Csv File, Check To Ensure The Number Of Record Matches */
+    @Test
+    public void givenFilePathGForWickets_WhenNoOfRecordMatches_ThenReturnTrue() {
+        int noOfRecords = cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        Assert.assertEquals(99, noOfRecords);
+    }
 
 }
 
