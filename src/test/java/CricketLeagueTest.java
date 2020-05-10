@@ -189,6 +189,18 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Ben Cutting",name);
     }
+
+    /* TC 10.1 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Four Wickets */
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate5w4w()
+    {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate4w();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        double runs=censusCsv[0].FourWickets;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Imran Tahir",name);
+    }
 }
 
 
