@@ -1,6 +1,7 @@
 import com.bl.cricketleague.CricketLeague;
 import com.bl.cricketleague.exception.CricketLeagueException;
 import com.bl.cricketleague.model.IplMostRuns;
+import com.bl.cricketleague.model.IplMostWickets;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Before;
@@ -145,7 +146,7 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("David Warner",name);
     }
-    
+
     /* Tc 7.1 :Given The Ipl Most Wickets Csv File, Check To Ensure The Number Of Record Matches */
     @Test
     public void givenFilePathGForWickets_WhenNoOfRecordMatches_ThenReturnTrue() {
@@ -153,6 +154,17 @@ public class CricketLeagueTest {
         Assert.assertEquals(99, noOfRecords);
     }
 
+    /* TC 7.2 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bowling Avrages*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopBowlingAvg()
+    {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        double runs=censusCsv[0].Avg;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham",name);
+    }
 }
 
 

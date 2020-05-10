@@ -15,7 +15,6 @@ public class CricketLeague {
     List<IplMostRuns> censusCSVList = null;
     List<IplMostWickets> iplMostWicketsList = null;
 
-
     public Integer readFileForRuns(String filePath) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -38,6 +37,16 @@ public class CricketLeague {
         } catch (RuntimeException e) {
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header");
         }
+    }
+
+    public String getSortedWiseWicketsWithBestBowlingAvrage()
+    {
+        if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Avg);
+        this.sortForWickets(iplMostWicketsComparator);
+        String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
+        return sortedCensusJson;
     }
 
 
@@ -106,10 +115,10 @@ public class CricketLeague {
         return sortedCensusJson;
     }
 
-    /*Function To Sort States*/
+    /*Function To Sort Wickets Data*/
     private void sortForWickets(Comparator<IplMostWickets> iplMostWicketsComparator) {
-        for (int i = 0; i < censusCSVList.size()-1; i++){
-            for (int j=0; j < censusCSVList.size()-i-1; j++){
+        for (int i = 0; i < iplMostWicketsList.size()-1; i++){
+            for (int j=0; j < iplMostWicketsList.size()-i-1; j++){
                 IplMostWickets census1 = iplMostWicketsList.get(j);
                 IplMostWickets census2 = iplMostWicketsList.get(j+1);
                 if (iplMostWicketsComparator.compare(census1,census2)<0){
@@ -120,9 +129,7 @@ public class CricketLeague {
         }
     }
 
-
-
-    /*Function To Sort States*/
+    /*Function To Sort Runs Data*/
     private void sort(Comparator<IplMostRuns> iplMostRunsComparator) {
         for (int i = 0; i < censusCSVList.size()-1; i++){
             for (int j=0; j < censusCSVList.size()-i-1; j++){

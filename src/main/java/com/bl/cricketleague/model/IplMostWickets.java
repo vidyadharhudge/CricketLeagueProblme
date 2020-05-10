@@ -21,7 +21,7 @@ public class IplMostWickets
     @CsvBindByName(column = "BBI")
     public String BBI;
     @CsvBindByName(column = "Avg")
-    public String Avg;
+    public double Avg;
     @CsvBindByName(column = "Econ")
     public String Econ;
     @CsvBindByName(column = "SR")
@@ -95,11 +95,11 @@ public class IplMostWickets
         this.BBI = BBI;
     }
 
-    public String getAvg() {
+    public double getAvg() {
         return Avg;
     }
 
-    public void setAvg(String avg) {
+    public void setAvg(double avg) {
         Avg = avg;
     }
 
