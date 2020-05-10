@@ -23,7 +23,7 @@ public class IplMostWickets
     @CsvBindByName(column = "Avg")
     public double Avg;
     @CsvBindByName(column = "Econ")
-    public String Econ;
+    public double Econ;
     @CsvBindByName(column = "SR")
     public double SR;
     @CsvBindByName(column = "4w")
@@ -103,11 +103,11 @@ public class IplMostWickets
         Avg = avg;
     }
 
-    public String getEcon() {
+    public double getEcon() {
         return Econ;
     }
 
-    public void setEcon(String econ) {
+    public void setEcon(double econ) {
         Econ = econ;
     }
 

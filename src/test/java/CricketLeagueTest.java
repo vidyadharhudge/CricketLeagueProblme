@@ -178,6 +178,18 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Krishnappa Gowtham",name);
     }
+
+    /* TC 9 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Economy Of Bowler*/
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopEconomy()
+    {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestEconomyRate();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        double runs=censusCsv[0].Econ;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Ben Cutting",name);
+    }
 }
 
 
