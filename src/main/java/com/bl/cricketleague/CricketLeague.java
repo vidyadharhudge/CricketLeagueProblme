@@ -39,6 +39,25 @@ public class CricketLeague {
         }
     }
 
+    public String getSortedWiseWicketsWithBestStrikingRate5w()
+    {
+        if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FiveWickets);
+        this.sortForWickets(iplMostWicketsComparator);
+        String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
+        return sortedCensusJson;
+    }
+
+    public String getSortedWiseWicketsWithBestStrikingRate4w()
+    {
+        if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FourWickets);
+        this.sortForWickets(iplMostWicketsComparator);
+        String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
+        return sortedCensusJson;
+    }
     public String getSortedWiseWicketsWithBestEconomyRate()
     {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)

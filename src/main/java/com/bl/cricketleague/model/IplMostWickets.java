@@ -27,9 +27,9 @@ public class IplMostWickets
     @CsvBindByName(column = "SR")
     public double SR;
     @CsvBindByName(column = "4w")
-    public String FourWickets;
+    public int FourWickets;
     @CsvBindByName(column = "5w")
-    public String FiveWickets;
+    public int FiveWickets;
 
     public String getPOS() {
         return POS;
@@ -119,19 +119,19 @@ public class IplMostWickets
         this.SR = SR;
     }
 
-    public String getFourWickets() {
+    public int getFourWickets() {
         return FourWickets;
     }
 
-    public void setFourWickets(String fourWickets) {
+    public void setFourWickets(int fourWickets) {
         FourWickets = fourWickets;
     }
 
-    public String getFiveWickets() {
+    public int getFiveWickets() {
         return FiveWickets;
     }
 
-    public void setFiveWickets(String fiveWickets) {
+    public void setFiveWickets(int fiveWickets) {
         FiveWickets = fiveWickets;
     }
 
