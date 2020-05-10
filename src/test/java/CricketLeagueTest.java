@@ -25,238 +25,188 @@ public class CricketLeagueTest {
 
     /* T.C 1.2 :Given IPL Censes Csv File Is Incorrect Then Returns Custom Exception */
     @Test
-    public void givenCricketLeagueData_WhenWithWrongFile_ThenShouldThrowException()
-    {
+    public void givenCricketLeagueData_WhenWithWrongFile_ThenShouldThrowException() {
         try {
-            cricketLeague.readFileForRuns(WRONG_CSV_FILE_PATH);
-        } catch ( CricketLeagueException e) {
-            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
+            cricketLeague.readFileForRuns(WRONG_CSV_FILE_PATH);}
+        catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, e.type); }
     }
 
     /* T.C 1.3 :Given IPL Censes Csv Type Is Incorrect Then Returns Custom Exception */
     @Test
-    public void givenCricketLeagueData_WhenWithWrongType_ThenShouldThrowException()
-    {
+    public void givenCricketLeagueData_WhenWithWrongType_ThenShouldThrowException() {
         try {
-            cricketLeague.readFileForRuns(WRONG_CSV_FILE_TYPE); }
+            cricketLeague.readFileForRuns(WRONG_CSV_FILE_TYPE);}
         catch (CricketLeagueException e) {
-            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
+            Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, e.type); }
     }
 
     /* T.C 1.4 :Given IPL Censes Csv file Is Correct But With Wrong Delimiter Should Rhrow Custom Exception */
     @Test
-    public void givenCricketLeagueData_WhenWithWrongDelimiter_ThenShouldThrowException()
-    {
+    public void givenCricketLeagueData_WhenWithWrongDelimiter_ThenShouldThrowException() {
         try {
-            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE); }
-        catch (CricketLeagueException e) {
-            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
+            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE);}
+         catch (CricketLeagueException e) {
+            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER, e.type); }
     }
 
     /* T.C 1.5 :Given IPL Censes Csv file Is Correct But With Wrong Header Should Rhrow Custom Exception */
     @Test
-    public void givenCricketLeagueData_WhenWithWrongHeader_ThenShouldThrowException()
-    {
+    public void givenCricketLeagueData_WhenWithWrongHeader_ThenShouldThrowException() {
         try {
-            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE); }
+            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE);}
         catch (CricketLeagueException e) {
-            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
+            Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER, e.type); }
     }
 
     /* TC 1.6 : Given Cricket Census Data when sorted should return sorted data BY Avrage Wise*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedDataAvrage()
-    {
-            cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
-            String sortedCensusData = cricketLeague.getAvrageWiseSorted();
-            IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-            double runs=censusCsv[0].Avg;
-            String name=censusCsv[0].getPLAYER();
-            Assert.assertEquals("MS Dhoni",name);
-    }
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedDataAvrage() {
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
+        String sortedCensusData = cricketLeague.getAvrageWiseSorted();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("MS Dhoni", name); }
 
     /* TC 2 : Given Cricket League Data when sorted should return sorted data By Strike Rate*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseStrikeRate();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].SR;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Ishant Sharma",name);
-    }
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Ishant Sharma", name); }
 
     /* TC 3.1 : Given Cricket League Data when sorted should return sorted data By Sixes*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedSixes()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedSixes() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseSixes();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].sixs;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Andre Russell",name);
-    }
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Andre Russell", name); }
 
     /* TC 3.2 : Given Cricket League Data when sorted should return sorted data By fours*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedFours()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedFours() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseFours();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].fours;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Shikhar Dhawan",name);
-    }
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Shikhar Dhawan", name); }
 
     /* TC 4 : Given Cricket League Data when sorted should return sorted data By SR With 4s And 6s*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRateWithSixesAndFours()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRateWithSixesAndFours() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
-        String sortedCensusData = cricketLeague. getSortedStrikeRate6s4s();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].SR;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Ishant Sharma",name);
-    }
+        String sortedCensusData = cricketLeague.getSortedStrikeRate6s4s();
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Ishant Sharma", name); }
 
     /* TC 5 : Given Cricket League Data when sorted should return sorted data By Avg With Best SR*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedAvrageWithBestSR()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedAvrageWithBestSR() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseAvrageWithBestSR();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].Avg;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("MS Dhoni",name);
-    }
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("MS Dhoni", name); }
 
     /* TC 6 : Given Cricket League Data when sorted should return sorted data By Runs With Best Avg*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunsWithBestAvg()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunsWithBestAvg() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseRunsWithBestAvrage();
-        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
-        double runs=censusCsv[0].Runs;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("David Warner",name);
-    }
+        IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("David Warner", name); }
 
     /* Tc 7.1 :Given The Ipl Most Wickets Csv File, Check To Ensure The Number Of Record Matches */
     @Test
     public void givenFilePathGForWickets_WhenNoOfRecordMatches_ThenReturnTrue() {
         int noOfRecords = cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
-        Assert.assertEquals(99, noOfRecords);
-    }
+        Assert.assertEquals(99, noOfRecords); }
 
     /* TC 7.2 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bowling Avrages*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopBowlingAvg()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopBowlingAvg() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].Avg;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Krishnappa Gowtham",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
     /* TC 8 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Striking Rates*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopStrikingRate()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopStrikingRate() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].SR;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Krishnappa Gowtham",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
     /* TC 9 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Economy Of Bowler*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopEconomy()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopEconomy() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestEconomyRate();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].Econ;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Ben Cutting",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Ben Cutting", name); }
 
     /* TC 10.1 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Four Wickets */
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate4w()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate4w() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate4w();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].FourWickets;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Imran Tahir",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Imran Tahir", name); }
 
     /* TC 10.2 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Five Wickets */
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate5w()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate5w() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate5w();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].FiveWickets;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Alzarri Joseph",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Alzarri Joseph", name); }
 
     /* TC 11 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Striking Rates And Avg*/
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopStrikingRateAndAvg()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedWithTopStrikingRateAndAvg() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].Avg;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Krishnappa Gowtham",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
     /* TC 12 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Wickets */
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedTopWickets()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedTopWickets() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestWickets();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].Wkts;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Imran Tahir",name);
-    }
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Imran Tahir", name); }
 
-    /* TC 13 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bolwing And Batting Avg */
+    /* TC 13.1 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bolwing */
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnBestBowlingAndBattingAvg()
-    {
+    public void givenCricketLeagueData_whenSorted_shouldReturnBestBowlingAvg() {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
-        double runs=censusCsv[0].Avg;
-        String name=censusCsv[0].getPLAYER();
-        Assert.assertEquals("Krishnappa Gowtham",name);
+        String name = censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
+    /* TC 13.2 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bolwing */
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnBestBattingAvgs() {
         cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedData = cricketLeague.getAvrageWiseSorted();
-        IplMostRuns[] censusCsvs = new Gson().fromJson(sortedData,IplMostRuns[].class);
-        double run=censusCsvs[0].Avg;
-        String names=censusCsvs[0].getPLAYER();
-        Assert.assertEquals("MS Dhoni",names);
-    }
-
+        IplMostRuns[] censusCsvs = new Gson().fromJson(sortedData, IplMostRuns[].class);
+        String names = censusCsvs[0].getPLAYER();
+        Assert.assertEquals("MS Dhoni", names); }
 }
-
 

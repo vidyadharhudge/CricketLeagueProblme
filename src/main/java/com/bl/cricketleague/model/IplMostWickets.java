@@ -15,7 +15,7 @@ public class IplMostWickets
     @CsvBindByName(column = "Ov")
     public String Ov;
     @CsvBindByName(column = "Runs")
-    public String Runs;
+    public double Runs;
     @CsvBindByName(column = "Wkts")
     public double Wkts;
     @CsvBindByName(column = "BBI")
@@ -71,11 +71,11 @@ public class IplMostWickets
         Ov = ov;
     }
 
-    public String getRuns() {
+    public double getRuns() {
         return Runs;
     }
 
-    public void setRuns(String runs) {
+    public void setRuns(double runs) {
         Runs = runs;
     }
 
