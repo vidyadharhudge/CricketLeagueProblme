@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 public class CricketLeague {
@@ -48,7 +47,6 @@ public class CricketLeague {
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson;
     }
-
 
     public String getSortedWiseWicketsWithBestStrikingRate5w()
     {
