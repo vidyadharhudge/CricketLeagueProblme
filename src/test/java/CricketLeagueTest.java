@@ -162,11 +162,11 @@ public class CricketLeagueTest {
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
         double runs=censusCsv[0].Avg;
+
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Krishnappa Gowtham",name);
     }
 }
-
 
 
 

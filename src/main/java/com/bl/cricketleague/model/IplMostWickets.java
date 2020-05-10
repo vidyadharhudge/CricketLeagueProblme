@@ -25,7 +25,7 @@ public class IplMostWickets
     @CsvBindByName(column = "Econ")
     public String Econ;
     @CsvBindByName(column = "SR")
-    public String SR;
+    public double SR;
     @CsvBindByName(column = "4w")
     public String FourWickets;
     @CsvBindByName(column = "5w")
@@ -111,11 +111,11 @@ public class IplMostWickets
         Econ = econ;
     }
 
-    public String getSR() {
+    public double getSR() {
         return SR;
     }
 
-    public void setSR(String SR) {
+    public void setSR(double SR) {
         this.SR = SR;
     }
 
