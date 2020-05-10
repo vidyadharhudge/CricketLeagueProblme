@@ -192,7 +192,7 @@ public class CricketLeagueTest {
 
     /* TC 10.1 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Four Wickets */
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate5w4w()
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate4w()
     {
         cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate4w();
@@ -201,7 +201,18 @@ public class CricketLeagueTest {
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("Imran Tahir",name);
     }
-}
 
+    /* TC 10.2 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Five Wickets */
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate5w()
+    {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate5w();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        double runs=censusCsv[0].FiveWickets;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Alzarri Joseph",name);
+    }
+}
 
 
