@@ -238,6 +238,25 @@ public class CricketLeagueTest {
         Assert.assertEquals("Imran Tahir",name);
     }
 
+    /* TC 13 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bolwing And Batting Avg */
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnBestBowlingAndBattingAvg()
+    {
+        cricketLeague.readFileForWickets(IPL_MOST_WICKET_SHEET);
+        String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestBowlingAvrage();
+        IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
+        double runs=censusCsv[0].Avg;
+        String name=censusCsv[0].getPLAYER();
+        Assert.assertEquals("Krishnappa Gowtham",name);
+
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
+        String sortedData = cricketLeague.getAvrageWiseSorted();
+        IplMostRuns[] censusCsvs = new Gson().fromJson(sortedData,IplMostRuns[].class);
+        double run=censusCsvs[0].Avg;
+        String names=censusCsvs[0].getPLAYER();
+        Assert.assertEquals("MS Dhoni",names);
+    }
+
 }
 
 
