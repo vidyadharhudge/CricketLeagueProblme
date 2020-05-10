@@ -1,6 +1,7 @@
 package com.bl.cricketleague;
 import com.bl.cricketleague.exception.CricketLeagueException;
 import com.bl.cricketleague.model.IplMostRuns;
+import com.bl.cricketleague.model.IplMostWickets;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,14 +10,13 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.StreamSupport;
-
 
 public class CricketLeague {
-
     List<IplMostRuns> censusCSVList = null;
+    List<IplMostWickets> iplMostWicketsList = null;
 
-    public Integer readFile(String filePath) {
+
+    public Integer readFileForRuns(String filePath) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             censusCSVList = csvBuilder.getCSVFileList(reader, IplMostRuns.class);
@@ -28,12 +28,18 @@ public class CricketLeague {
         }
     }
 
-    /* Function To get number of entries in csv file*/
-    private <E> int getCount(Iterator<E> iterator) {
-        Iterable<E> csvIterable = () -> iterator;
-        int numberOfEnteries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-        return numberOfEnteries;
+    public Integer readFileForWickets(String filePath) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            iplMostWicketsList = csvBuilder.getCSVFileList(reader, IplMostWickets.class);
+            return iplMostWicketsList.size(); }
+        catch (IOException e) {
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, "Enter Correct File And Type");
+        } catch (RuntimeException e) {
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header");
+        }
     }
+
 
     public String getSortedWiseRunsWithBestAvrage()
     {
@@ -44,7 +50,6 @@ public class CricketLeague {
         String sortedCensusJson = new Gson().toJson(censusCSVList);
         return sortedCensusJson;
     }
-
 
     public String getSortedWiseAvrageWithBestSR()
     {
@@ -83,8 +88,6 @@ public class CricketLeague {
         return sortedCensusJson;
     }
 
-
-
     public String getSortedWiseStrikeRate()  {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
@@ -102,6 +105,22 @@ public class CricketLeague {
         String sortedCensusJson = new Gson().toJson(censusCSVList);
         return sortedCensusJson;
     }
+
+    /*Function To Sort States*/
+    private void sortForWickets(Comparator<IplMostWickets> iplMostWicketsComparator) {
+        for (int i = 0; i < censusCSVList.size()-1; i++){
+            for (int j=0; j < censusCSVList.size()-i-1; j++){
+                IplMostWickets census1 = iplMostWicketsList.get(j);
+                IplMostWickets census2 = iplMostWicketsList.get(j+1);
+                if (iplMostWicketsComparator.compare(census1,census2)<0){
+                    iplMostWicketsList.set(j,census2);
+                    iplMostWicketsList.set(j+1,census1);
+                }
+            }
+        }
+    }
+
+
 
     /*Function To Sort States*/
     private void sort(Comparator<IplMostRuns> iplMostRunsComparator) {

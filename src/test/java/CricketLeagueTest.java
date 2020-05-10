@@ -18,7 +18,7 @@ public class CricketLeagueTest {
     /* Tc 1.1 :Given The Ipl Most Run Csv File, Check To Ensure The Number Of Record Matches */
     @Test
     public void givenFilePath_WhenNoOfRecordMatches_ThenReturnTrue() {
-        int noOfRecords = cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        int noOfRecords = cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         Assert.assertEquals(100, noOfRecords);
     }
 
@@ -27,7 +27,7 @@ public class CricketLeagueTest {
     public void givenCricketLeagueData_WhenWithWrongFile_ThenShouldThrowException()
     {
         try {
-            cricketLeague.readFile(WRONG_CSV_FILE_PATH);
+            cricketLeague.readFileForRuns(WRONG_CSV_FILE_PATH);
         } catch ( CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
     }
@@ -37,7 +37,7 @@ public class CricketLeagueTest {
     public void givenCricketLeagueData_WhenWithWrongType_ThenShouldThrowException()
     {
         try {
-            cricketLeague.readFile(WRONG_CSV_FILE_TYPE); }
+            cricketLeague.readFileForRuns(WRONG_CSV_FILE_TYPE); }
         catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.FILE_NOT_FOUND,e.type); }
     }
@@ -47,7 +47,7 @@ public class CricketLeagueTest {
     public void givenCricketLeagueData_WhenWithWrongDelimiter_ThenShouldThrowException()
     {
         try {
-            cricketLeague.readFile(WRONG_DELIMITER_FILE); }
+            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE); }
         catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
     }
@@ -57,7 +57,7 @@ public class CricketLeagueTest {
     public void givenCricketLeagueData_WhenWithWrongHeader_ThenShouldThrowException()
     {
         try {
-            cricketLeague.readFile(WRONG_DELIMITER_FILE); }
+            cricketLeague.readFileForRuns(WRONG_DELIMITER_FILE); }
         catch (CricketLeagueException e) {
             Assert.assertEquals(CricketLeagueException.ExceptionType.WRONG_DELIMITER,e.type); }
     }
@@ -66,7 +66,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedDataAvrage()
     {
-            cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+            cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
             String sortedCensusData = cricketLeague.getAvrageWiseSorted();
             IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
             double runs=censusCsv[0].Avg;
@@ -78,7 +78,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRate()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseStrikeRate();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].SR;
@@ -90,7 +90,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedSixes()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseSixes();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].sixs;
@@ -102,7 +102,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedFours()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseFours();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].fours;
@@ -114,7 +114,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedStrikeRateWithSixesAndFours()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague. getSortedStrikeRate6s4s();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].SR;
@@ -126,7 +126,7 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedAvrageWithBestSR()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseAvrageWithBestSR();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].Avg;
@@ -138,13 +138,14 @@ public class CricketLeagueTest {
     @Test
     public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunsWithBestAvg()
     {
-        cricketLeague.readFile(IPL_MOST_RUN_SHEET);
+        cricketLeague.readFileForRuns(IPL_MOST_RUN_SHEET);
         String sortedCensusData = cricketLeague.getSortedWiseRunsWithBestAvrage();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData,IplMostRuns[].class);
         double runs=censusCsv[0].Runs;
         String name=censusCsv[0].getPLAYER();
         Assert.assertEquals("David Warner",name);
     }
+
 }
 
 
