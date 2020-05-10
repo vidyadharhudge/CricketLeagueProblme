@@ -22,9 +22,7 @@ public class CricketLeague {
         catch (IOException e) {
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, "Enter Correct File And Type");
         } catch (RuntimeException e) {
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header");
-        }
-    }
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header"); } }
 
     public Integer readFileForWickets(String filePath) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
@@ -32,15 +30,11 @@ public class CricketLeague {
             iplMostWicketsList = csvBuilder.getCSVFileList(reader, IplMostWickets.class);
             return iplMostWicketsList.size(); }
         catch (IOException e) {
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, "Enter Correct File And Type");
-        } catch (RuntimeException e) {
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header");
-        }
-    }
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.FILE_NOT_FOUND, "Enter Correct File And Type");}
+        catch (RuntimeException e) {
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header"); } }
 
-
-    public String getSortedWiseWicketsWithBestRuns()
-    {
+    public String getSortedWiseWicketsWithBestRuns(){
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
         Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Runs);
@@ -78,6 +72,7 @@ public class CricketLeague {
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson;
     }
+
     public String getSortedWiseWicketsWithBestEconomyRate()
     {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
@@ -107,7 +102,6 @@ public class CricketLeague {
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson;
     }
-
 
     public String getSortedWiseRunsWithBestAvrage()
     {
@@ -182,10 +176,7 @@ public class CricketLeague {
                 IplMostWickets census2 = iplMostWicketsList.get(j+1);
                 if (iplMostWicketsComparator.compare(census1,census2)<0){
                     iplMostWicketsList.set(j,census2);
-                    iplMostWicketsList.set(j+1,census1);
-                }
-            }
-        }
+                    iplMostWicketsList.set(j+1,census1); } } }
     }
 
     /*Function To Sort Runs Data*/
@@ -196,12 +187,8 @@ public class CricketLeague {
                 IplMostRuns census2 = censusCSVList.get(j+1);
                 if (iplMostRunsComparator.compare(census1,census2)<0){
                     censusCSVList.set(j,census2);
-                    censusCSVList.set(j+1,census1);
-                }
-            }
-        }
+                    censusCSVList.set(j+1,census1); } } } }
     }
-}
 
 
 

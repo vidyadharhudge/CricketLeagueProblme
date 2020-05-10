@@ -1,19 +1,12 @@
 package com.bl.cricketleague;
-
 import com.bl.cricketleague.exception.CSVBuilderException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-
 import java.io.BufferedReader;
-import java.util.Iterator;
 import java.util.List;
 
 public class OpenCSVBuilder implements ICSVBuilder
 {
-    public Iterator<ICSVBuilder> getCSVFileIterator(BufferedReader reader, Class csvClass)  {
-        return this.getCSVToBean(reader, csvClass).iterator();
-    }
-
     @Override
     public List<ICSVBuilder> getCSVFileList(BufferedReader reader, Class csvClass)  {
         return this.getCSVToBean(reader, csvClass).parse();
