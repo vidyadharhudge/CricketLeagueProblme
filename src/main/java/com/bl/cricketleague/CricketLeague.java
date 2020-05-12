@@ -14,7 +14,7 @@ public class CricketLeague {
     List<IplMostRuns> censusCSVList = null;
     List<IplMostWickets> iplMostWicketsList = null;
 
-    public Integer readFileForRuns(String filePath) {
+        public Integer readFileForRuns(String filePath) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             censusCSVList = csvBuilder.getCSVFileList(reader, IplMostRuns.class);
@@ -24,7 +24,7 @@ public class CricketLeague {
         } catch (RuntimeException e) {
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header"); } }
 
-    public Integer readFileForWickets(String filePath) {
+        public Integer readFileForWickets(String filePath) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             iplMostWicketsList = csvBuilder.getCSVFileList(reader, IplMostWickets.class);
@@ -34,139 +34,109 @@ public class CricketLeague {
         catch (RuntimeException e) {
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.WRONG_DELIMITER, "Check Delimiter And Header"); } }
 
-    public String getSortedWiseWicketsWithBestRuns(){
+        public String getSortedWiseWicketsWithBestAllRounder() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Runs);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Runs+census.Wkts)/2);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseWicketsWithBestWickets()
-    {
+        public String getSortedMaximumWicketsWithBestBowlingAvg() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Wkts);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Wkts+census.Avg)/2);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseWicketsWithBestStrikingRate5w()
-    {
+        public String getSortedMaximumWicketsWithBestBowlingAvgBestSR() {
+        if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> ((census.Runs/census.Wkts)+census.SR)/2);
+        this.sortForWickets(iplMostWicketsComparator);
+        String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
+        return sortedCensusJson; }
+
+        public String getSortedWiseWicketsWithBestStrikingRate5w4W() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
         Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FiveWickets);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseWicketsWithBestStrikingRate4w()
-    {
-        if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FourWickets);
-        this.sortForWickets(iplMostWicketsComparator);
-        String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
-
-    public String getSortedWiseWicketsWithBestEconomyRate()
-    {
+        public String getSortedWiseWicketsWithBestEconomyRate() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
         Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Econ);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseWicketsWithBestStrikingRate()
-    {
+        public String getSortedWiseWicketsWithBestStrikingRate() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.SR);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> ((census.Ov)*6)/census.Wkts);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseWicketsWithBestBowlingAvrage()
-    {
+        public String getSortedWicketsWithBestBowlingAvrages() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.Avg);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Runs/census.Wkts));
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseRunsWithBestAvrage()
-    {
+        public String getSortedWiseRunsWithBestAvrage() {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.Runs);
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> (census.Runs+census.Avg)/2);
         this.sort(iplMostRunsComparator);
         String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseAvrageWithBestSR()
-    {
+        public String getSortedWiseAvrageWithBestSR() {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.Avg);
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> (census.Avg+census.SR)/2);
         this.sort(iplMostRunsComparator);
         String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedStrikeRate6s4s()  {
+        public String getSortedStrikeRate6s4s()  {
+        if(censusCSVList.size()==0 || censusCSVList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> (census.Runs/census.BF)*100);
+        this.sort(iplMostRunsComparator);
+        String sortedCensusJson = new Gson().toJson(censusCSVList);
+        return sortedCensusJson; }
+
+        public String getSortedWise6sAnd4s()  {
+        if(censusCSVList.size()==0 || censusCSVList==null)
+            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.sixs+census.fours);
+        this.sort(iplMostRunsComparator);
+        String sortedCensusJson = new Gson().toJson(censusCSVList);
+        return sortedCensusJson; }
+
+        public String getSortedWiseStrikeRate()  {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
         Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.SR);
         this.sort(iplMostRunsComparator);
         String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
-    public String getSortedWiseFours()  {
-        if(censusCSVList.size()==0 || censusCSVList==null)
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.fours);
-        this.sort(iplMostRunsComparator);
-        String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
-
-    public String getSortedWiseSixes()  {
-        if(censusCSVList.size()==0 || censusCSVList==null)
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.sixs);
-        this.sort(iplMostRunsComparator);
-        String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
-
-    public String getSortedWiseStrikeRate()  {
-        if(censusCSVList.size()==0 || censusCSVList==null)
-            throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.SR);
-        this.sort(iplMostRunsComparator);
-        String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
-
-    public String getAvrageWiseSorted()  {
+        public String getAvrageWiseSorted()  {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
         Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> census.Avg);
         this.sort(iplMostRunsComparator);
         String sortedCensusJson = new Gson().toJson(censusCSVList);
-        return sortedCensusJson;
-    }
+        return sortedCensusJson; }
 
     /*Function To Sort Wickets Data*/
     private void sortForWickets(Comparator<IplMostWickets> iplMostWicketsComparator) {

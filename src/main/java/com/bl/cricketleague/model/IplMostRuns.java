@@ -6,19 +6,19 @@ public class IplMostRuns
 {
 
     @CsvBindByName(column = "POS")
-    public String POS;
+    public double POS;
 
     @CsvBindByName(column = "PLAYER")
     public String PLAYER;
 
     @CsvBindByName(column = "Mat")
-    public String Mat;
+    public double Mat;
 
     @CsvBindByName(column = "Inns")
-    public String Inns;
+    public double Inns;
 
     @CsvBindByName(column = "NO")
-    public String NO;
+    public double NO;
 
     @CsvBindByName(column = "Runs")
     public double Runs;
@@ -30,13 +30,13 @@ public class IplMostRuns
     public double Avg;
 
     @CsvBindByName(column = "BF")
-    public String BF;
+    public double BF;
 
     @CsvBindByName(column = "SR")
     public double SR;
 
     @CsvBindByName(column = "100")
-    public String hundred;
+    public double hundred;
 
     @CsvBindByName(column = "50")
     public String fifty;

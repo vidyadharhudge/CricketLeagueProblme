@@ -13,7 +13,7 @@ public class IplMostWickets
     @CsvBindByName(column = "Inns")
     public String Inns;
     @CsvBindByName(column = "Ov")
-    public String Ov;
+    public double Ov;
     @CsvBindByName(column = "Runs")
     public double Runs;
     @CsvBindByName(column = "Wkts")
@@ -52,5 +52,101 @@ public class IplMostWickets
                 ", FourWickets='" + FourWickets + '\'' +
                 ", FiveWickets='" + FiveWickets + '\'' +
                 '}';
+    }
+
+    public String getPOS() {
+        return POS;
+    }
+
+    public void setPOS(String POS) {
+        this.POS = POS;
+    }
+
+    public String getMat() {
+        return Mat;
+    }
+
+    public void setMat(String mat) {
+        Mat = mat;
+    }
+
+    public String getInns() {
+        return Inns;
+    }
+
+    public void setInns(String inns) {
+        Inns = inns;
+    }
+
+    public double getOv() {
+        return Ov;
+    }
+
+    public void setOv(double ov) {
+        Ov = ov;
+    }
+
+    public double getRuns() {
+        return Runs;
+    }
+
+    public void setRuns(double runs) {
+        Runs = runs;
+    }
+
+    public double getWkts() {
+        return Wkts;
+    }
+
+    public void setWkts(double wkts) {
+        Wkts = wkts;
+    }
+
+    public String getBBI() {
+        return BBI;
+    }
+
+    public void setBBI(String BBI) {
+        this.BBI = BBI;
+    }
+
+    public double getAvg() {
+        return Avg;
+    }
+
+    public void setAvg(double avg) {
+        Avg = avg;
+    }
+
+    public double getEcon() {
+        return Econ;
+    }
+
+    public void setEcon(double econ) {
+        Econ = econ;
+    }
+
+    public double getSR() {
+        return SR;
+    }
+
+    public void setSR(double SR) {
+        this.SR = SR;
+    }
+
+    public int getFourWickets() {
+        return FourWickets;
+    }
+
+    public void setFourWickets(int fourWickets) {
+        FourWickets = fourWickets;
+    }
+
+    public int getFiveWickets() {
+        return FiveWickets;
+    }
+
+    public void setFiveWickets(int fiveWickets) {
+        FiveWickets = fiveWickets;
     }
 }
