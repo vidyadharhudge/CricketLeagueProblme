@@ -37,7 +37,7 @@ public class CricketLeague {
         public String getSortedWiseWicketsWithBestAllRounder() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Runs+census.Wkts)/2);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census ->census.Wkts+census.Runs);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson; }
@@ -61,7 +61,7 @@ public class CricketLeague {
         public String getSortedWiseWicketsWithBestStrikingRate5w4W() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FiveWickets);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.SR+(census.FiveWickets+census.FourWickets));
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson; }
@@ -101,7 +101,7 @@ public class CricketLeague {
         public String getSortedWiseAvrageWithBestSR() {
         if(censusCSVList.size()==0 || censusCSVList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> (census.Avg+census.SR)/2);
+        Comparator<IplMostRuns> iplMostRunsComparator = Comparator.comparing(census -> (census.Avg+census.SR)>100);
         this.sort(iplMostRunsComparator);
         String sortedCensusJson = new Gson().toJson(censusCSVList);
         return sortedCensusJson; }

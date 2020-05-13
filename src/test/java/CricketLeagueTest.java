@@ -102,7 +102,7 @@ public class CricketLeagueTest {
         String sortedCensusData = cricketLeague.getSortedWiseAvrageWithBestSR();
         IplMostRuns[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostRuns[].class);
         String name = censusCsv[0].getPLAYER();
-        Assert.assertEquals("Ishant Sharma", name); }
+        Assert.assertEquals("David Warner", name); }
 
     /* TC 6 : Given Cricket League Data when sorted should return sorted data By Runs With Best Avg*/
     @Test
@@ -153,7 +153,7 @@ public class CricketLeagueTest {
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestStrikingRate5w4W();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
         String name = censusCsv[0].getPLAYER();
-        Assert.assertEquals("Alzarri Joseph", name); }//rabada
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
     /* TC 11 : Given The Ipl Most Wickets Data when sorted should return sorted data By Top Striking Rates And Avg*/
     @Test
@@ -171,7 +171,7 @@ public class CricketLeagueTest {
         String sortedCensusData = cricketLeague.getSortedMaximumWicketsWithBestBowlingAvg();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
         String name = censusCsv[0].getPLAYER();
-        Assert.assertEquals("Krishnappa Gowtham", name); }//imran tahair and kagiso
+        Assert.assertEquals("Krishnappa Gowtham", name); }
 
     /* TC 13.1 : Given The Ipl Most Wickets Data when sorted should return sorted data By Bolwing */
     @Test
@@ -199,6 +199,6 @@ public class CricketLeagueTest {
         String sortedCensusData = cricketLeague.getSortedWiseWicketsWithBestAllRounder();
         IplMostWickets[] censusCsv = new Gson().fromJson(sortedCensusData, IplMostWickets[].class);
         String name = censusCsv[0].getPLAYER();
-        Assert.assertEquals("Deepak Chahar", name); }//Andrue rusel
+        Assert.assertEquals("Deepak Chahar", name); }
 }
 
