@@ -37,7 +37,8 @@ public class CricketLeague {
         public String getSortedWiseWicketsWithBestAllRounder() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census ->census.Wkts+census.Runs);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census ->census.Runs);
+        iplMostWicketsComparator.thenComparing(census->census.Wkts);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson; }
@@ -45,7 +46,8 @@ public class CricketLeague {
         public String getSortedMaximumWicketsWithBestBowlingAvg() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Wkts+census.Avg)/2);
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> (census.Wkts));
+        iplMostWicketsComparator.thenComparing(census->census.Avg);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson; }
@@ -61,7 +63,9 @@ public class CricketLeague {
         public String getSortedWiseWicketsWithBestStrikingRate5w4W() {
         if(iplMostWicketsList.size()==0 || iplMostWicketsList==null)
             throw new CricketLeagueException(CricketLeagueException.ExceptionType.NO_CENSUS_DATA,"No Data");
-        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.SR+(census.FiveWickets+census.FourWickets));
+        Comparator<IplMostWickets> iplMostWicketsComparator = Comparator.comparing(census -> census.FiveWickets);
+        iplMostWicketsComparator.thenComparing(census->census.FourWickets);
+        iplMostWicketsComparator.thenComparing(census->census.SR);
         this.sortForWickets(iplMostWicketsComparator);
         String sortedCensusJson = new Gson().toJson(iplMostWicketsList);
         return sortedCensusJson; }
